@@ -1,7 +1,7 @@
-import { ItemType } from './decks-api.ts'
+import { DeckType } from './decks-api.ts'
 
 const initialState = {
-  decks: [] as ItemType[], // todo: add type
+  decks: [] as DeckType[], // todo: add type
   searchParams: {
     name: '',
   },
@@ -20,8 +20,8 @@ export const decksReducer = (state: DecksState = initialState, action: DecksActi
   }
 }
 
-export const setDecksAC = (items: ItemType[]) => ({ type: 'SET-DECKS', items } as const)
-export const addDeckAC = (deck: ItemType) => ({ type: 'ADD-DECK', deck } as const)
+export const setDecksAC = (items: DeckType[]) => ({ type: 'SET-DECKS', items } as const)
+export const addDeckAC = (deck: DeckType) => ({ type: 'ADD-DECK', deck } as const)
 type SetDecksType = ReturnType<typeof setDecksAC>
 type AddDeckType = ReturnType<typeof addDeckAC>
 type DecksActions = SetDecksType | AddDeckType

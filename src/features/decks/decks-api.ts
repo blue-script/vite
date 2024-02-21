@@ -11,32 +11,36 @@ export const decksAPI = {
   fetchDecks() {
     return instance.get<FetchDecksResponseType>('v2/decks')
   },
-  addDeck(name: string) {
-    return instance.post<ItemType>('v1/decks', {name})
-  }
+  addDeck(params: AddDeckParams) {
+    return instance.post<DeckType>('v1/decks', params)
+  },
 }
 
-export type ItemType = {
-  'author': {
-    'id': string
-    'name': string
-  },
-  'id': string
-  'userId': string
-  'name': string
-  'isPrivate': boolean
-  'cover': string
-  'created': string
-  'updated': string
-  'cardsCount': number
+type AddDeckParams = {
+  name: string
 }
 
 export type FetchDecksResponseType = {
-  'items': ItemType[],
-  'pagination': {
-    'currentPage': number
-    'itemsPerPage': number
-    'totalPages': number
-    'totalItems': number
+  items: DeckType[],
+  pagination: {
+    currentPage: number
+    itemsPerPage: number
+    totalPages: number
+    totalItems: number
   },
+}
+type AuthType = {
+  id: string
+  name: string
+}
+export type DeckType = {
+  author: AuthType
+  id: string
+  userId: string
+  name: string
+  isPrivate: boolean
+  cover: string
+  created: string
+  updated: string
+  cardsCount: number
 }
