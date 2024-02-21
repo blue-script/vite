@@ -11,6 +11,9 @@ export const decksAPI = {
   fetchDecks() {
     return instance.get<FetchDecksResponseType>('v2/decks')
   },
+  addDeck(name: string) {
+    return instance.post<ItemType>('v1/decks', {name})
+  }
 }
 
 export type ItemType = {
